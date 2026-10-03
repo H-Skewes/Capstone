@@ -1,0 +1,50 @@
+-- Creation of Dashboard Databse
+CREATE DATABASE DASHBOARD;
+GO
+-- 
+USE DASHBOARD;
+GO
+
+-- Create Table Dashboard_Main
+CREATE TABLE Dashboard_Main
+(
+Ticket_ID INT NOT NULL PRIMARY KEY,
+--Ticket_ID will be an incrementing number from ticket to ticket
+Date_Time VARCHAR(25) NOT NULL,
+--Date_Time could be MM/DD/YYYY TIME:TIME.TIME AM/PM
+Review_Process VARCHAR(25) NULL,
+--Review_Process will tell us the stage it is in
+Ticket_Status VARCHAR(10) NULL,
+--Ticket_Status will tell us if the ticket is complete or not
+Ticket_Priority VARCHAR(10) NOT NULL,
+--Ticket_Priority will tell us if the SOC needs to check this
+--immedietly or not, this will also be a refrence to the
+--Priority_Link Table
+)
+
+--Create Table Personel_to_Ticket
+CREATE TABLE Personel_to_Ticket
+(
+USER_ID INT NOT NULL PRIMARY KEY,
+--User_ID could be email or a hash or some ID number
+Ticket_ID INT NOT NULL,
+    FOREIGN KEY (Ticket_ID)
+        REFERENCES Dashboard_Main(Ticket_ID)
+--Ticket_ID will be the same ID as in Dashboard_Main
+)
+
+--Create Link for Ticket_Priority
+CREATE TABLE Priority_Link
+(
+Text_Included VARCHAR(350) NULL,
+Ticket_ID INT NOT NULL,
+    FOREIGN KEY (Ticket_ID)
+        REFERENCES Dashboard_Main(Ticket_ID),
+--It's important for the Text_Included to be part of the ticket.
+USER_ID INT NOT NULL,
+    FOREIGN KEY (USER_ID)
+        REFERENCES Personel_to_Ticket(USER_ID)
+--It's also important to know who submitted the text
+);
+
+
