@@ -1,9 +1,12 @@
 -- Creation of Dashboard Databse
-CREATE DATABASE DASHBOARD;
+CREATE DATABASE FULL_DB;
 GO
 -- 
-USE DASHBOARD;
+USE FULL_DB;
 GO
+
+-- If table exists, drop it
+DROP TABLE IF EXISTS dbo.Dashboard_Main;
 
 -- Create Table Dashboard_Main
 CREATE TABLE Dashboard_Main
@@ -22,6 +25,9 @@ Ticket_Priority VARCHAR(10) NOT NULL,
 --Priority_Link Table
 )
 
+-- If table exists, drop it
+DROP TABLE IF EXISTS dbo.Personel_to_Ticket;
+
 --Create Table Personel_to_Ticket
 CREATE TABLE Personel_to_Ticket
 (
@@ -32,6 +38,9 @@ Ticket_ID INT NOT NULL,
         REFERENCES Dashboard_Main(Ticket_ID)
 --Ticket_ID will be the same ID as in Dashboard_Main
 )
+
+-- If table exists, drop it
+DROP TABLE IF EXISTS dbo.Priority_Link;
 
 --Create Link for Ticket_Priority
 CREATE TABLE Priority_Link
