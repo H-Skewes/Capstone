@@ -1,0 +1,20 @@
+-- These will be stored Procedures for the tables in our Database
+
+CREATE PROCEDURE dbo.Create_Ticket
+    @Date_Time VARCHAR(25) NOT NULL,
+    @Ticket_Status VARCHAR(10) NULL
+AS
+BEGIN
+    -- SET NOCOUNT ON; <-- This will prevent extra results
+    -- However we want it off right now because we want to see if the 
+    -- Procedures are being created.
+    INSERT INTO dbo.Dashboard_Main
+    (
+        Date_Time,
+        Ticket_Status
+    )
+
+    SELECT SCOPE_IDENTITY() AS Ticket_ID;
+
+END;
+GO
