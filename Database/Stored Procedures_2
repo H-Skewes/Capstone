@@ -3,6 +3,12 @@ our known stored procedures to the mssql syntax. As well to test anything,
 when finished the old file will be deleted and this will be 
 known as Stored Procedures.*/
 
+/*  The following procedure is for creating a ticket, when creating a ticket
+    we want to create a new Ticket ID and we want the date and time of the
+    created ticket part of the dashboard. We also want to set the status as
+    open because it's a new ticket. We should also be setting the review process
+    as not started because this will be created automatically without an analyst.*/
+
 CREATE OR ALTER PROCEDURE dbo.Create_Ticket
    @Ticket_ID INT,
    @Date_Time VARCHAR(25),
@@ -24,7 +30,45 @@ BEGIN
         '1+1', -- We will want to add 1 to the previously created ticket number to make it increasing
         GETDATE(),
         'Open',
-        'Under Review'
+        'Not Started'
+    );
+    END;
+    GO
+
+/* !The following procedure is to update the ticket status to close,
+    we should only be updating the ticket status when we are done.
+    However mistakes can be made so we should add a way to set the
+    status as open or closed. This will be done later!*/
+
+CREATE OR ALTER PROCEDURE dbo.Update_Status
+    @Ticket_Status VARCHAR (10)
+AS
+BEGIN
+    --SET NOCOUNT ON;
+    INSERT INTO dbo.Dashboard_Main
+    (
+        Ticket_Status
+    )
+
+    VALUES
+    (
+        'Closed' -- We should only be updating the status of the ticket when we are done so it should be closed
+    );
+    END;
+    GO
+
+CREATE OR ALTER PROCEDURE dbo.Update_Review
+    @Review_Process VARCHAR(25)
+AS
+BEGIN
+    --SET NOCOUNT ON;
+    INSERT INTO dbo.Dashboard_Main
+    (
+        Review_Process
+    )
+    VALUES
+    (
+        'Updated' -- We need a system where we can have someone send a string for the update
     );
     END;
     GO
