@@ -2,6 +2,7 @@
 
 CREATE PROCEDURE dbo.Create_Ticket
     @Date_Time VARCHAR(25) NOT NULL,
+    @Review_Process VARCHAR (25) NULL,
     @Ticket_Status VARCHAR(10) NULL
 AS
 BEGIN
@@ -11,10 +12,26 @@ BEGIN
     INSERT INTO dbo.Dashboard_Main
     (
         Date_Time,
+        Review_Process,
         Ticket_Status
     )
 
     SELECT SCOPE_IDENTITY() AS Ticket_ID;
+
+END;
+GO
+
+CREATe PROCEDURE dbo.Set_Status
+    @Ticket_Status VARCHAR (10) NOT NULL
+AS
+BEGIN
+    -- SET NOCOUNT ON;
+    INSERT INTO dbo.Dashboard_Main
+    (
+
+        Ticket_Status
+
+    )
 
 END;
 GO
