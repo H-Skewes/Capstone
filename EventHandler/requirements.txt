@@ -1,0 +1,2 @@
+# Python dependencies for the inbox event handler
+# Dependencies will be added as integrations are implemented.
