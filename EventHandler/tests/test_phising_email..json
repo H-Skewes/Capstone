@@ -1,0 +1,17 @@
+
+{
+  "id": "mock-phishing-001",
+  "from": {
+    "emailAddress": {
+      "name": "IT Support",
+      "address": "IT-Support@Fake-Company.example"
+    }
+  },
+  "subject": "URGENT: Your Account Will Be Disabled",
+  "receivedDateTime": "2026-11-07T14:30:00Z",
+  "body": {
+    "contentType": "text",
+    "content": "Your company account has been flagged for suspicious activity. To prevent your account from being disabled, verify your login immediately at https://login.fake-company.example/verify"
+  },
+  "hasAttachments": false
+}
